@@ -1,5 +1,5 @@
 #python file instide test file
 print("test.py")
 
-for i in range(10):
-  print('i', i)
+for iter in range(10):
+  print('i', iter)

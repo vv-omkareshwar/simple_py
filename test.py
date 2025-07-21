@@ -1,4 +1,4 @@
-#python file instide test file
+#python file inside test file
 print("test.py")
 
 for iter in range(10):

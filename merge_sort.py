@@ -1,24 +1,37 @@
-def f(a):
-    if len(a) <= 1:
-        return a
-    m = len(a) // 2
-    b = f(a[:m])
-    c = f(a[m:])
-    return g(b, c)
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    
+    mid = len(arr) // 2
+    left_half = merge_sort(arr[:mid])
+    right_half = merge_sort(arr[mid:])
+    
+    return merge(left_half, right_half)
 
-def g(b, c):
-    d = []
+def merge(left, right):
+    result = []
     i = j = 0
-    while i < len(b) and j < len(c):
-        if b[i] < c[j]:
-            d.append(b[i])
+    
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            result.append(left[i])
             i += 1
         else:
-            d.append(c[j])
+            result.append(right[j])
             j += 1
-    d.extend(b[i:])
-    d.extend(c[j:])
-    return d
+    
+    # Add remaining elements
+    while i < len(left):
+        result.append(left[i])
+        i += 1
+    
+    while j < len(right):
+        result.append(right[j])
+        j += 1
+    
+    return result
 
-x = [5, 2, 9, 1, 7, 3, 8]
-print(f(x))
+# Example usage
+numbers = [5, 2, 9, 1, 7, 3, 8]
+print("Unsorted:", numbers)
+print("Sorted:", merge_sort(numbers))
